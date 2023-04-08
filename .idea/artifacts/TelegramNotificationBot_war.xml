@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="TelegramNotificationBot:war">
+    <output-path>$PROJECT_DIR$/TelegramNotificationBot/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>TelegramNotificationBot</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="TelegramNotificationBot-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="TelegramNotificationBot:war exploded" />
+    </root>
+  </artifact>
+</component>
