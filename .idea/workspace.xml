@@ -7,6 +7,7 @@
     <list default="true" id="58054000-b4f9-42aa-b181-5aa5a1b963f8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/BotService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/BotService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/target/classes/BotConfig/BotService.class" beforeDir="false" afterPath="$PROJECT_DIR$/TelegramNotificationBot/target/classes/BotConfig/BotService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +82,10 @@
       <workItem from="1680969532855" duration="2252000" />
       <workItem from="1680971899014" duration="74000" />
       <workItem from="1680972040014" duration="14000" />
-      <workItem from="1681028977018" duration="10329000" />
+      <workItem from="1681028977018" duration="10515000" />
+      <workItem from="1681291588038" duration="4920000" />
+      <workItem from="1681299642943" duration="2063000" />
+      <workItem from="1681405332560" duration="5815000" />
     </task>
     <servers />
   </component>
@@ -98,5 +102,12 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="update.message.new_chat_members" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

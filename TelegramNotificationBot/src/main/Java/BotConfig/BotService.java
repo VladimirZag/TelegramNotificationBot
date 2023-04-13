@@ -9,7 +9,12 @@ import com.pengrad.telegrambot.model.request.InlineQueryResultArticle;
 import com.pengrad.telegrambot.request.AnswerInlineQuery;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SendMessage;
+import okhttp3.Dispatcher;
+import okhttp3.OkHttp;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.util.Objects;
+import java.util.Scanner;
 
 public class BotService {
     AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BotConfig.class);
@@ -27,12 +32,20 @@ public class BotService {
         Message message = update.message();
         CallbackQuery callbackQuery = new CallbackQuery();
         InlineQuery inlineQuery = update.inlineQuery();
+        String notificationText = null;
 
         BaseRequest request = null;
 
-        if (inlineQuery != null) {
+        if (message != null && message.viaBot() != null && message.viaBot().username().equals("Notifications1XklmrBots1_bot")) {
+            if ("Создание уведомления. Введите текст:".equals(message.text())) {
+                
+                notificationText = message.text();
+                request = new SendMessage(message.chat().id(), "Уведомление сохранено! Ваш текст: \n" + notificationText);
+                DoRequest(request);
+            }
+        } else if (inlineQuery != null) {
             InlineQueryResultArticle inlineCreate =
-                    new InlineQueryResultArticle("create", "Создать", "Создание уведомления");
+                    new InlineQueryResultArticle("create", "Создать", "Создание уведомления. Введите текст:");
             InlineQueryResultArticle inlineEdit =
                     new InlineQueryResultArticle("edit", "Редактировать", "Редактировать уведомление");
             InlineQueryResultArticle inlineDelete =
@@ -45,15 +58,15 @@ public class BotService {
 
         } else if (message != null) {
             long chatId = message.chat().id();
-            if ("/start".equals(message.text())) {
+            if ("/start".equals(message.text()) || "/start@Notifications1XklmrBots1_bot".equals(message.text())) {
                 request = new SendMessage(chatId, "Привет, " + message.from().firstName() + "! Добавьте бот в нужный чат и назначьте его администратором. Вызовите через '@' id бота и выберите нужное действие.");
                 DoRequest(request);
             }
+            if (update.message().newChatMembers() != null) {
+                request = new SendMessage(chatId, "Добро пожаловать! Бот активирован. Введите команду /start");
+                DoRequest(request);
+            }
         }
-//        if (update.message().chat().joinByRequest() != null && message != null) {
-//            request = new SendMessage(message.chat().id(), "Привет! Введите команду '/start'");
-//            DoRequest(request);
-//        }
 
     }
 
