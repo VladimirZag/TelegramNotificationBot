@@ -4,10 +4,7 @@ import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.*;
 import com.pengrad.telegrambot.model.request.*;
-import com.pengrad.telegrambot.request.AnswerInlineQuery;
-import com.pengrad.telegrambot.request.BaseRequest;
-import com.pengrad.telegrambot.request.EditMessageText;
-import com.pengrad.telegrambot.request.SendMessage;
+import com.pengrad.telegrambot.request.*;
 import okhttp3.Dispatcher;
 import okhttp3.OkHttp;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -38,12 +35,15 @@ public class BotService {
             Long chatId = message.chat().id();
             switch (message.text()) {
                 case ("Создание уведомления\uD83E\uDDE9"): {
-                    request = new SendMessage(chatId, "Введите текст уведомления начиная с '/text'✍️и нажмите 'Сохранить текст'").replyMarkup(new InlineKeyboardMarkup(new InlineKeyboardButton("Сохранить текст").callbackData("0")));
+                    request = new SendMessage(chatId, "Введите текст уведомления начиная с '/t'✍️и нажмите 'Сохранить текст'. Образец ввода указан ниже\uD83D\uDC47")
+                            .replyMarkup(new InlineKeyboardMarkup(new InlineKeyboardButton("Сохранить текст").callbackData("0")));
+                    DoRequest(request);
+                   request = new SendPhoto(chatId, "https://disk.yandex.ru/i/Q7iX7VDjQrFAMg");
                     DoRequest(request);
                     break;
                 }
                 case ("Редактор уведомления\uD83D\uDD27:"): {
-                    request = new SendMessage(chatId, "Нажмите 'Показать текущий текст' или  Введите текст уведомления начиная с '/text'✍️и нажмите 'Сохранить новый текст'").replyMarkup(new InlineKeyboardMarkup(
+                    request = new SendMessage(chatId, "Нажмите 'Показать текущий текст' или  Введите текст уведомления начиная с '/t'✍️и нажмите 'Сохранить новый текст'").replyMarkup(new InlineKeyboardMarkup(
                             new InlineKeyboardButton("Показать текущий текст").callbackData("1"), new InlineKeyboardButton("Сохранить новый текст").callbackData("2")));
                     DoRequest(request);
                     break;
@@ -71,14 +71,13 @@ public class BotService {
 
         } else if (message != null) {
             long chatId = message.chat().id();
-            if ("/start".equals(message.text()) || "/start@Notifications1XklmrBots1_bot".equals(message.text())) {
+            if (message.text() != null && "/start".equals(message.text()) || "/start@Notifications1XklmrBots1_bot".equals(message.text())) {
                 request = new SendMessage(chatId, "\uD83D\uDCD6Добавьте бот в нужный чат. Если бот уже добавлен, вызовите через '@' id бота и выберите нужное действие.");
                 DoRequest(request);
             }
-            if (message.text().contains("/text") || message.text().contains("/text@Notifications1XklmrBots1_bot")) {
-                notificationText = message.text().substring(5);
+            if (message.text() != null && "/t".equals(message.text().substring(0, 2))) {
+                notificationText = message.text().substring(2);
             }
-
             if (update.message().newChatMembers() != null && Arrays.stream(update.message().newChatMembers()).findFirst().get().username().equals("Notifications1XklmrBots1_bot")) {
                 request = new SendMessage(chatId, "Привет\uD83D\uDC4B, " + message.from().firstName() + "! Бот активирован.\uD83E\uDD16 Введите команду /start");
                 DoRequest(request);

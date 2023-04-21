@@ -7,7 +7,9 @@
     <list default="true" id="58054000-b4f9-42aa-b181-5aa5a1b963f8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/BotService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/BotService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/target/classes/BotConfig/BotService.class" beforeDir="false" afterPath="$PROJECT_DIR$/TelegramNotificationBot/target/classes/BotConfig/BotService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/TelegramNotificationBot/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,20 +42,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/zagor/IdeaProjects/TelegramNotificationBot",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "CodeWithMe",
-    "spring.configuration.checksum": "367525ed0e2d83f57720c8e87dd6cc5d"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/zagor/IdeaProjects/TelegramNotificationBot&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeWithMe&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;367525ed0e2d83f57720c8e87dd6cc5d&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -109,6 +111,14 @@
     </option>
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="update.message.new_chat_members" />
