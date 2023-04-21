@@ -40,19 +40,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/zagor/IdeaProjects/Spring2&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;367525ed0e2d83f57720c8e87dd6cc5d&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/zagor/IdeaProjects/InterfaceCalculator",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "367525ed0e2d83f57720c8e87dd6cc5d"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -85,7 +85,10 @@
       <workItem from="1681028977018" duration="10515000" />
       <workItem from="1681291588038" duration="4920000" />
       <workItem from="1681299642943" duration="2063000" />
-      <workItem from="1681405332560" duration="5815000" />
+      <workItem from="1681405332560" duration="5926000" />
+      <workItem from="1681743944443" duration="8699000" />
+      <workItem from="1681984636535" duration="7308000" />
+      <workItem from="1682065050907" duration="9324000" />
     </task>
     <servers />
   </component>
@@ -107,6 +110,8 @@
     <watches-manager>
       <configuration name="Application">
         <watch expression="update.message.new_chat_members" />
+        <watch expression="callbackQuery.message" />
+        <watch expression="((Class)((SendMessage)request).responseClass).reflectionData" custom="com.pengrad.telegrambot.request.SendMessage,java.lang.Class" />
       </configuration>
     </watches-manager>
   </component>
