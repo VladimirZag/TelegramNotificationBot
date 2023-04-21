@@ -45,11 +45,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/zagor/IdeaProjects/InterfaceCalculator",
+    "last_opened_file_path": "C:/Users/zagor/IdeaProjects/TelegramNotificationBot",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "CodeWithMe",
     "spring.configuration.checksum": "367525ed0e2d83f57720c8e87dd6cc5d"
   }
 }]]></component>
@@ -88,7 +89,8 @@
       <workItem from="1681405332560" duration="5926000" />
       <workItem from="1681743944443" duration="8699000" />
       <workItem from="1681984636535" duration="7308000" />
-      <workItem from="1682065050907" duration="9324000" />
+      <workItem from="1682065050907" duration="9659000" />
+      <workItem from="1682082865258" duration="862000" />
     </task>
     <servers />
   </component>
@@ -114,5 +116,9 @@
         <watch expression="((Class)((SendMessage)request).responseClass).reflectionData" custom="com.pengrad.telegrambot.request.SendMessage,java.lang.Class" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -86,12 +86,16 @@ public class BotService {
 
 
         } else if (callbackQuery != null) {
-            System.out.println("f");
             Long chatId = callbackQuery.message().chat().id();
             switch (callbackQuery.data()) {
                 case ("0"): {
-                    request = new SendMessage(chatId, "Текст уведомления сохранен!✅");
-                    DoRequest(request);
+                    if (notificationText.equals("Нет текста \uD83D\uDCE6")) {
+                        request = new SendMessage(chatId, "Текст уведомления не был введен. Прочтите инструкцию выше\uD83D\uDC46");
+                        DoRequest(request);
+                    } else {
+                        request = new SendMessage(chatId, "Текст уведомления сохранен!✅");
+                        DoRequest(request);
+                    }
                     break;
                 }
                 case ("1"): {
@@ -100,7 +104,7 @@ public class BotService {
                     break;
                 }
                 case ("2"): {
-                    request = new SendMessage(chatId, "\uD83D\uDCD6Ваш текст уведомления сохранен!✅");
+                    request = new SendMessage(chatId, "Новый текст уведомления сохранен!✅");
                     DoRequest(request);
                     break;
                 }
