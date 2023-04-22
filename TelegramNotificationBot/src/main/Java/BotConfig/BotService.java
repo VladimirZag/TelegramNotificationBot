@@ -5,14 +5,16 @@ import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.*;
 import com.pengrad.telegrambot.model.request.*;
 import com.pengrad.telegrambot.request.*;
-import okhttp3.Dispatcher;
-import okhttp3.OkHttp;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class BotService {
     static String notificationText = "Нет текста \uD83D\uDCE6";
+    static String notificationTime = "Время не установлено\uD83D\uDD50";
     AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BotConfig.class);
     private final BotConfig botConfig = context.getBean(BotConfig.class);
     private final TelegramBot bot = new TelegramBot(botConfig.getBotKey());
@@ -35,21 +37,23 @@ public class BotService {
             Long chatId = message.chat().id();
             switch (message.text()) {
                 case ("Создание уведомления\uD83E\uDDE9"): {
-                    request = new SendMessage(chatId, "Введите текст уведомления начиная с '/t'✍️и нажмите 'Сохранить текст'. Образец ввода указан ниже\uD83D\uDC47")
-                            .replyMarkup(new InlineKeyboardMarkup(new InlineKeyboardButton("Сохранить текст").callbackData("0")));
-                    DoRequest(request);
-                   request = new SendPhoto(chatId, "https://disk.yandex.ru/i/Q7iX7VDjQrFAMg");
-                    DoRequest(request);
-                    break;
-                }
-                case ("Редактор уведомления\uD83D\uDD27:"): {
-                    request = new SendMessage(chatId, "Нажмите 'Показать текущий текст' или  Введите текст уведомления начиная с '/t'✍️и нажмите 'Сохранить новый текст'").replyMarkup(new InlineKeyboardMarkup(
-                            new InlineKeyboardButton("Показать текущий текст").callbackData("1"), new InlineKeyboardButton("Сохранить новый текст").callbackData("2")));
+                    request = new SendMessage(chatId, "Введите текст уведомления начиная с '/t'✍️и время уведомления начиная с '/d'\n" +
+                            " Образец ввода:\uD83D\uDC47\n" +
+                            " '/t Hello!' и '/d 12:00'").replyMarkup(new InlineKeyboardMarkup(
+                            new InlineKeyboardButton("Показать текущий текст").callbackData("0"), new InlineKeyboardButton("Показать текущее время").callbackData("1")));
                     DoRequest(request);
                     break;
                 }
                 case ("Уведомление удалено.✅"): {
                     notificationText = "Нет текста \uD83D\uDCE6";
+                    notificationTime = "Время не установлено\uD83D\uDD50";
+                    break;
+                }
+                case ("\uD83D\uDCD6\uD83D\uDD27Вызовите через '@' id бота и выберите нужное действие.\n " +
+                        "1. 'Создать уведомление✅' - описывает создание нового уведомления, так же позволяет посмотреть уже установленное уведомление.\n " +
+                        "2. 'Удалить уведомление❌' - очищает Ваше уведомление."): {
+                    request = new SendPhoto(chatId, "https://disk.yandex.ru/d/qk_tiiI9vOx37w");
+                    DoRequest(request);
                     break;
                 }
             }
@@ -58,14 +62,13 @@ public class BotService {
         if (inlineQuery != null) {
             InlineQueryResultArticle inlineCreate =
                     new InlineQueryResultArticle("create", "Создать уведомление✅", "Создание уведомления\uD83E\uDDE9");
-            InlineQueryResultArticle inlineEdit =
-                    new InlineQueryResultArticle("edit", "Редактировать уведомление\uD83D\uDD27", "Редактор уведомления\uD83D\uDD27:");
             InlineQueryResultArticle inlineDelete =
                     new InlineQueryResultArticle("delete", "Удалить уведомление❌", "Уведомление удалено.✅");
             InlineQueryResultArticle inlineHelp =
-                    new InlineQueryResultArticle("help", "Помощь\uD83E\uDDD0", "\uD83D\uDCD6Вызовите через '@' id бота и выберите нужное действие. 1. 'Создать уведомление✅' - позволяет создать новое уведомление. " +
-                            "2. 'Редактировать уведомление\uD83D\uDD27' - позволяет посмотреть текст текущего уведомления и ввести новый, 3. 'Удалить уведомление❌' - очищает Ваше уведомление.");
-            request = new AnswerInlineQuery(inlineQuery.id(), inlineCreate, inlineEdit, inlineDelete, inlineHelp).cacheTime(1);
+                    new InlineQueryResultArticle("help", "Помощь\uD83E\uDDD0", "\uD83D\uDCD6\uD83D\uDD27Вызовите через '@' id бота и выберите нужное действие.\n " +
+                            "1. 'Создать уведомление✅' - описывает создание нового уведомления, так же позволяет посмотреть уже установленное уведомление.\n " +
+                            "2. 'Удалить уведомление❌' - очищает Ваше уведомление.");
+            request = new AnswerInlineQuery(inlineQuery.id(), inlineCreate, inlineDelete, inlineHelp).cacheTime(1);
             DoRequest(request);
 
 
@@ -77,6 +80,20 @@ public class BotService {
             }
             if (message.text() != null && "/t".equals(message.text().substring(0, 2))) {
                 notificationText = message.text().substring(2);
+                request = new SendMessage(chatId, "Текст уведомления сохранен!✅");
+                DoRequest(request);
+            }
+            if (message.text() != null && "/d ".equals(message.text().substring(0, 3))) {
+                notificationTime = message.text().substring(3);
+                request = new SendMessage(chatId, "Время уведомления сохранено!✅");
+                DoRequest(request);
+                LocalTime localTime = LocalTime.now();
+
+//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
+//                LocalTime time = LocalTime.parse(notificationTime,formatter);
+//                System.out.println(time);
+
+
             }
             if (update.message().newChatMembers() != null && Arrays.stream(update.message().newChatMembers()).findFirst().get().username().equals("Notifications1XklmrBots1_bot")) {
                 request = new SendMessage(chatId, "Привет\uD83D\uDC4B, " + message.from().firstName() + "! Бот активирован.\uD83E\uDD16 Введите команду /start");
@@ -88,22 +105,12 @@ public class BotService {
             Long chatId = callbackQuery.message().chat().id();
             switch (callbackQuery.data()) {
                 case ("0"): {
-                    if (notificationText.equals("Нет текста \uD83D\uDCE6")) {
-                        request = new SendMessage(chatId, "Текст уведомления не был введен. Прочтите инструкцию выше\uD83D\uDC46");
-                        DoRequest(request);
-                    } else {
-                        request = new SendMessage(chatId, "Текст уведомления сохранен!✅");
-                        DoRequest(request);
-                    }
-                    break;
-                }
-                case ("1"): {
                     request = new SendMessage(chatId, "\uD83D\uDCD6Ваш текст уведомления: \n" + notificationText);
                     DoRequest(request);
                     break;
                 }
-                case ("2"): {
-                    request = new SendMessage(chatId, "Новый текст уведомления сохранен!✅");
+                case ("1"): {
+                    request = new SendMessage(chatId, "\uD83D\uDD50Заданное время уведомления: \n" + notificationTime);
                     DoRequest(request);
                     break;
                 }
