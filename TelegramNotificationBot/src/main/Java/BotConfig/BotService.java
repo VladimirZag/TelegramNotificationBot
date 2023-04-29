@@ -7,19 +7,25 @@ import com.pengrad.telegrambot.model.request.*;
 import com.pengrad.telegrambot.request.*;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 
 public class BotService {
+   // final BlockingQueue<String> queue = new LinkedBlockingDeque<>();
+
     static String notificationText = "Нет текста \uD83D\uDCE6";
     static String notificationTime = "Время не установлено\uD83D\uDD50";
+    static String fLocalTime = null;
+
     AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BotConfig.class);
     private final BotConfig botConfig = context.getBean(BotConfig.class);
     private final TelegramBot bot = new TelegramBot(botConfig.getBotKey());
 
     public void botStart() {
+
         bot.setUpdatesListener(updates -> {
             updates.forEach(this::process);
             return UpdatesListener.CONFIRMED_UPDATES_ALL;
@@ -73,6 +79,7 @@ public class BotService {
 
 
         } else if (message != null) {
+
             long chatId = message.chat().id();
             if (message.text() != null && "/start".equals(message.text()) || "/start@Notifications1XklmrBots1_bot".equals(message.text())) {
                 request = new SendMessage(chatId, "\uD83D\uDCD6Добавьте бот в нужный чат. Если бот уже добавлен, вызовите через '@' id бота и выберите нужное действие.");
@@ -85,22 +92,25 @@ public class BotService {
             }
             if (message.text() != null && "/d ".equals(message.text().substring(0, 3))) {
                 notificationTime = message.text().substring(3);
+                new Thread(new NotificationProcessor(notificationTime)).start();
                 request = new SendMessage(chatId, "Время уведомления сохранено!✅");
                 DoRequest(request);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
                 LocalTime localTime = LocalTime.now();
-
-//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
-//                LocalTime time = LocalTime.parse(notificationTime,formatter);
-//                System.out.println(time);
-
+                // queue.add(time);
+                fLocalTime = formatter.format(localTime);
 
             }
             if (update.message().newChatMembers() != null && Arrays.stream(update.message().newChatMembers()).findFirst().get().username().equals("Notifications1XklmrBots1_bot")) {
                 request = new SendMessage(chatId, "Привет\uD83D\uDC4B, " + message.from().firstName() + "! Бот активирован.\uD83E\uDD16 Введите команду /start");
                 DoRequest(request);
             }
-
-
+            if (fLocalTime != null && notificationTime != null) {
+                if (fLocalTime.equals(notificationTime)) {
+                    request = new SendMessage(chatId, "Уведомление❗:\n" + notificationText);
+                    DoRequest(request);
+                }
+            }
         } else if (callbackQuery != null) {
             Long chatId = callbackQuery.message().chat().id();
             switch (callbackQuery.data()) {
@@ -124,4 +134,8 @@ public class BotService {
             bot.execute(request);
         }
     }
+//    public void DoNotification(String notificationText1){
+//        notificationText1 = notificationText;
+//    }
+
 }

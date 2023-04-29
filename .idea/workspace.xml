@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58054000-b4f9-42aa-b181-5aa5a1b963f8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/TelegramNotificationBot/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/BotService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/BotService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Resources/textExample.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/target/classes/BotConfig/BotService.class" beforeDir="false" afterPath="$PROJECT_DIR$/TelegramNotificationBot/target/classes/BotConfig/BotService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,8 +46,9 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/zagor/IdeaProjects/TelegramNotificationBot&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/zagor/IdeaProjects/InterfaceCalculator&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -118,9 +119,9 @@
           <option name="timeStamp" value="2" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/BotService.java</url>
-          <line>92</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/NotificationProcessor.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
