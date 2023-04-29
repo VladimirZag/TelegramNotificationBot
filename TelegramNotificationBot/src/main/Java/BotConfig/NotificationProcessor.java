@@ -1,30 +1,35 @@
 package BotConfig;
 
+import com.pengrad.telegrambot.TelegramBot;
+import com.pengrad.telegrambot.model.Message;
+import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.BaseRequest;
 import com.pengrad.telegrambot.request.SendMessage;
+import jdk.nashorn.internal.objects.annotations.Function;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Queue;
 
-public class NotificationProcessor implements Runnable{
- // private   Queue<String> queue;
- // private Fu
+public class NotificationProcessor implements Runnable {
     private final String time;
+    private Update update;
 
-    public NotificationProcessor(String time) {
+    public NotificationProcessor(String time, Update update) {
         this.time = time;
+        this.update = update;
     }
 
     @Override
     public void run() {
-        while (true){
+        while (true) {
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
                 String localTime = formatter.format(LocalTime.now());
-                if (time.equals(localTime)){
-                    System.out.println("gg");
+                if (time.equals(localTime)) {
+                    BotService.TextMethod(update);
                 }
                 Thread.sleep(60000);
 

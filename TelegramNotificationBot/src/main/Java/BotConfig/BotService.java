@@ -14,15 +14,14 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class BotService {
-   // final BlockingQueue<String> queue = new LinkedBlockingDeque<>();
 
     static String notificationText = "Нет текста \uD83D\uDCE6";
     static String notificationTime = "Время не установлено\uD83D\uDD50";
     static String fLocalTime = null;
 
-    AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BotConfig.class);
-    private final BotConfig botConfig = context.getBean(BotConfig.class);
-    private final TelegramBot bot = new TelegramBot(botConfig.getBotKey());
+    static AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BotConfig.class);
+    private static final BotConfig botConfig = context.getBean(BotConfig.class);
+    static TelegramBot bot = new TelegramBot(botConfig.getBotKey());
 
     public void botStart() {
 
@@ -92,12 +91,11 @@ public class BotService {
             }
             if (message.text() != null && "/d ".equals(message.text().substring(0, 3))) {
                 notificationTime = message.text().substring(3);
-                new Thread(new NotificationProcessor(notificationTime)).start();
+                new Thread(new NotificationProcessor(notificationTime, update)).start();
                 request = new SendMessage(chatId, "Время уведомления сохранено!✅");
                 DoRequest(request);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
                 LocalTime localTime = LocalTime.now();
-                // queue.add(time);
                 fLocalTime = formatter.format(localTime);
 
             }
@@ -129,13 +127,20 @@ public class BotService {
 
     }
 
-    public void DoRequest(BaseRequest request) {
-        if (request != null) {
-            bot.execute(request);
+    public static void TextMethod(Update update) {
+        BaseRequest request = null;
+        Message message = update.message();
+        if (message != null) {
+            request = new SendMessage(update.message().chat().id(), "❗\n" + notificationText);
+            DoRequest(request);
         }
     }
-//    public void DoNotification(String notificationText1){
-//        notificationText1 = notificationText;
-//    }
+
+    public static void DoRequest(BaseRequest request) {
+        if (request != null) {
+            bot.execute(request);
+
+        }
+    }
 
 }
