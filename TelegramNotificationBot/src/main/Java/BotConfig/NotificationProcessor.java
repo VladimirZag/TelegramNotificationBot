@@ -15,7 +15,7 @@ import java.util.Queue;
 
 public class NotificationProcessor implements Runnable {
     private final String time;
-    private Update update;
+    private final Update update;
 
     public NotificationProcessor(String time, Update update) {
         this.time = time;

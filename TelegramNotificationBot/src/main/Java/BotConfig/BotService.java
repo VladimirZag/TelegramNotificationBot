@@ -17,11 +17,10 @@ public class BotService {
 
     static String notificationText = "Нет текста \uD83D\uDCE6";
     static String notificationTime = "Время не установлено\uD83D\uDD50";
-    static String fLocalTime = null;
 
-    static AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BotConfig.class);
+    static final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BotConfig.class);
     private static final BotConfig botConfig = context.getBean(BotConfig.class);
-    static TelegramBot bot = new TelegramBot(botConfig.getBotKey());
+    static final TelegramBot bot = new TelegramBot(botConfig.getBotKey());
 
     public void botStart() {
 
@@ -84,8 +83,8 @@ public class BotService {
                 request = new SendMessage(chatId, "\uD83D\uDCD6Добавьте бот в нужный чат. Если бот уже добавлен, вызовите через '@' id бота и выберите нужное действие.");
                 DoRequest(request);
             }
-            if (message.text() != null && "/t".equals(message.text().substring(0, 2))) {
-                notificationText = message.text().substring(2);
+            if (message.text() != null && "/t ".equals(message.text().substring(0, 3))) {
+                notificationText = message.text().substring(3);
                 request = new SendMessage(chatId, "Текст уведомления сохранен!✅");
                 DoRequest(request);
             }
@@ -94,20 +93,10 @@ public class BotService {
                 new Thread(new NotificationProcessor(notificationTime, update)).start();
                 request = new SendMessage(chatId, "Время уведомления сохранено!✅");
                 DoRequest(request);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-                LocalTime localTime = LocalTime.now();
-                fLocalTime = formatter.format(localTime);
-
             }
             if (update.message().newChatMembers() != null && Arrays.stream(update.message().newChatMembers()).findFirst().get().username().equals("Notifications1XklmrBots1_bot")) {
                 request = new SendMessage(chatId, "Привет\uD83D\uDC4B, " + message.from().firstName() + "! Бот активирован.\uD83E\uDD16 Введите команду /start");
                 DoRequest(request);
-            }
-            if (fLocalTime != null && notificationTime != null) {
-                if (fLocalTime.equals(notificationTime)) {
-                    request = new SendMessage(chatId, "Уведомление❗:\n" + notificationText);
-                    DoRequest(request);
-                }
             }
         } else if (callbackQuery != null) {
             Long chatId = callbackQuery.message().chat().id();
@@ -142,5 +131,4 @@ public class BotService {
 
         }
     }
-
 }

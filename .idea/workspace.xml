@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58054000-b4f9-42aa-b181-5aa5a1b963f8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/BotService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/BotService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/NotificationProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/NotificationProcessor.java" afterDir="false" />
     </list>
