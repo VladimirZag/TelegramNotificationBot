@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58054000-b4f9-42aa-b181-5aa5a1b963f8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/BotService.java" beforeDir="false" afterPath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/BotService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/NotificationProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/TelegramNotificationBot/src/main/Java/BotConfig/NotificationProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TelegramNotificationBot/src/main/webapp/index.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,5 +130,8 @@
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/TelegramNotificationBot$BotStarter.ic" NAME="BotStarter Coverage Results" MODIFIED="1683023022277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

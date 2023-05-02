@@ -15,7 +15,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 
 public class BotService {
 
-    static String notificationText = "Нет текста \uD83D\uDCE6";
+    static String notificationText = "Нет текста\uD83D\uDCE6";
     static String notificationTime = "Время не установлено\uD83D\uDD50";
 
     static final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BotConfig.class);
@@ -41,7 +41,7 @@ public class BotService {
             Long chatId = message.chat().id();
             switch (message.text()) {
                 case ("Создание уведомления\uD83E\uDDE9"): {
-                    request = new SendMessage(chatId, "Введите текст уведомления начиная с '/t'✍️и время уведомления начиная с '/d'\n" +
+                    request = new SendMessage(chatId, "Введите текст уведомления начиная с '/t'✍️и время уведомления начиная с '/d' в другом сообщении.\n" +
                             " Образец ввода:\uD83D\uDC47\n" +
                             " '/t Hello!' и '/d 12:00'").replyMarkup(new InlineKeyboardMarkup(
                             new InlineKeyboardButton("Показать текущий текст").callbackData("0"), new InlineKeyboardButton("Показать текущее время").callbackData("1")));
@@ -49,7 +49,7 @@ public class BotService {
                     break;
                 }
                 case ("Уведомление удалено.✅"): {
-                    notificationText = "Нет текста \uD83D\uDCE6";
+                    notificationText = "Нет текста\uD83D\uDCE6";
                     notificationTime = "Время не установлено\uD83D\uDD50";
                     break;
                 }
@@ -61,7 +61,6 @@ public class BotService {
                     break;
                 }
             }
-
         }
         if (inlineQuery != null) {
             InlineQueryResultArticle inlineCreate =
